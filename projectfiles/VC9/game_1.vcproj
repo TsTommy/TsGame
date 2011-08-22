@@ -168,6 +168,10 @@
 	</References>
 	<Files>
 		<File
+			RelativePath="..\..\src\game.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\main.cpp"
 			>
 		</File>
