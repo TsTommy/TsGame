@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../src"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -134,6 +134,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="sdl.lib sdlmain.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -168,11 +169,35 @@
 	</References>
 	<Files>
 		<File
+			RelativePath="..\..\src\debug.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\enable_pm.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\foreach.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\game.cpp"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\game.h"
 			>
 		</File>
 		<File
 			RelativePath="..\..\src\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\screen.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\screen.h"
 			>
 		</File>
 	</Files>
