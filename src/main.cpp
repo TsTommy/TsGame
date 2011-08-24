@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <SDL.h>
 
 #include "game.h"
@@ -10,15 +12,9 @@ inline static void pause()
 
 int main(int argc, char** argv)
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
 	game g;
-	game().play();
+	g.play();
+	//g.~game()
 
-//	struct incomplete;
-//	boost::shared_ptr<incomplete> p(reinterpret_cast<incomplete*>(1));
-
-	std::cout<<"Press enter to exit.\n";
-	pause();
-	SDL_Quit();
  	return argc+argv, 0;
 }
