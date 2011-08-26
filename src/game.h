@@ -23,9 +23,9 @@ public:
 
 private:
 	void do_event_loop();
-	int frame_interval() const {return 200;}
-
+	int frame_interval() const {return 16;}
 
 	box<screen> screen_;
 };
+
 #endif //GAME_H_INCLUDED

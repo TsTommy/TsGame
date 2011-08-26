@@ -3,18 +3,18 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
-class game_test
+class box_test
 		: public CppUnit::TestFixture
 {
-	CPPUNIT_TEST_SUITE(game_test);
-	CPPUNIT_TEST(/*testname*/);
+	CPPUNIT_TEST_SUITE(box_test);
+	CPPUNIT_TEST(test);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
 	void setUp();
 	void tearDown();
 
-	void /*testname*/();
+	void test();
 
 private:
 };

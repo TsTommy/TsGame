@@ -5,26 +5,28 @@
 #ifdef BOX
 	class animation;
 #else
-	#include "animation.h";
+	#include "animation.h"
 #endif
 
+struct platform;
 class screen;
 
 class screen_object
 {
 public:
-	screen_object(screen*, int x, int y);
+	screen_object(int x, int y);
 
 	int x() const {return x_;}
 	int y() const {return y_;}
-	void draw() const;
+	void draw(screen&) const;
 
-	void move_to(int x, int y);
+	void on_frame(Uint8* keyboard, std::set<platform> const&);
+	void on_jump(std::set<platform> const&);
 
 private:
-	screen* screen_;
 	int x_;
 	int y_;
+	int yvel_;
 	box<animation> animation_;
 };
 
