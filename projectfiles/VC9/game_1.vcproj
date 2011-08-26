@@ -185,10 +185,6 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\src\enable_pm.h"
-			>
-		</File>
-		<File
 			RelativePath="..\..\src\foreach.h"
 			>
 		</File>
@@ -206,6 +202,14 @@
 		</File>
 		<File
 			RelativePath="..\..\src\path.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\platform.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\platform.h"
 			>
 		</File>
 		<File

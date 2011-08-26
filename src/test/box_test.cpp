@@ -10,6 +10,7 @@ void box_test::tearDown()
 {
 }
 
-void box_test::/*testname*/()
+void box_test::test()
 {
+	CPPUNIT_ASSERT(false);
 }
