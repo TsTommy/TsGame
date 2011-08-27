@@ -10,8 +10,16 @@ inline static void pause()
 	std::cin.getline(useless,1);
 }
 
+inline static void print_instructions(std::ostream& out)
+{
+	out<<"Left and right arrow keys to move.\n"
+			<<"Spacebar to jump.\n";
+}
+
 int main(int argc, char** argv)
 {
+	print_instructions(std::cout);
+
 	game g;
 	g.play();
 	//g.~game()

@@ -31,7 +31,7 @@ void screen_object::on_frame(Uint8* keyboard, std::set<platform> const& plats)
 	int const old_x = x_, old_y = y_;
 
 	//accelerate
-	if(on_floor(x_,y_,plats) && yvel_ > 0) //falling through floor?
+	if(y_ > FLOOR && yvel_ > 0) //falling through floor?
 		yvel_ = 0; //stop that
 	else //airborne
 		++yvel_;
@@ -44,10 +44,6 @@ void screen_object::on_frame(Uint8* keyboard, std::set<platform> const& plats)
 		x_-=SPEED;
 	y_ += yvel_;
 
-	foreach(platform const& plat, plats)
-		if(collide(old_x,old_y,x_,y_,plat))
-			snap_to(x_,y_,yvel_,plat);
-
 	//collide with floor
 	if(y_ > FLOOR) {
 		yvel_ = 0;
@@ -57,6 +53,6 @@ void screen_object::on_frame(Uint8* keyboard, std::set<platform> const& plats)
 
 void screen_object::on_jump(std::set<platform> const& plats)
 {
-	if(on_floor(x_,y_,plats))
+	if(y_ >= FLOOR)
 		yvel_ = -20;
 }
