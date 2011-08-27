@@ -6,10 +6,11 @@
 #else
 #endif
 
-struct platform
+class platform
 {
-	int x1_,y1_, x2_,y2_;
-	bool operator<(platform const& that) const {return this<&that;}
+public:
+
+private:
 };
 
 #endif //PLATFORM_H_INCLUDED

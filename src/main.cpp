@@ -1,7 +1,5 @@
 #include <iostream>
 
-#include <SDL.h>
-
 #include "game.h"
 
 inline static void pause()

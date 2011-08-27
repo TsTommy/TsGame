@@ -1,14 +1,17 @@
 #ifndef SCREEN_OBJECT_H_INCLUDED
 #define SCREEN_OBJECT_H_INCLUDED
 
+#include <SDL.h>
+#include <set>
+
 #include "box.h"
 #ifdef BOX
 	class animation;
 #else
-	#include "animation.h";
+	#include "animation.h"
 #endif
 
-struct platform;
+class platform;
 class screen;
 
 class screen_object
