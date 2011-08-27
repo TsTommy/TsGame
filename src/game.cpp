@@ -38,11 +38,12 @@ void game::do_event_loop()
 			{
 			case SDL_QUIT:
 				return;
-			case SDL_KEYDOWN:
+			case SDL_KEYUP:
 				switch(ev.key.keysym.sym)
 				{
 				case SDLK_SPACE:
-					player.on_jump(platforms);
+					if(!keyboard[SDLK_DOWN])
+						player.on_jump(platforms);
 					break;
 				}
 				break;

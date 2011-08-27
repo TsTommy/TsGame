@@ -1,3 +1,4 @@
+#include <cmath>
 #include <set>
 
 #include "animation.h"
@@ -49,10 +50,20 @@ void screen_object::on_frame(Uint8* keyboard, std::set<platform> const& plats)
 		yvel_ = 0;
 		y_ = FLOOR;
 	}
+
+	if(y_ >= FLOOR && keyboard[SDLK_SPACE]) //on floor
+	{
+		jump_strength_ += 8;
+		int const MAX = 225;
+		if(jump_strength_ > MAX)
+			jump_strength_ = MAX;
+	}
+	else
+		jump_strength_ = 0;
 }
 
 void screen_object::on_jump(std::set<platform> const& plats)
 {
 	if(y_ >= FLOOR)
-		yvel_ = -20;
+		yvel_ = -static_cast<int>(sqrt(static_cast<double>(jump_strength_)));
 }

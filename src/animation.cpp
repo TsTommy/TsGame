@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "animation.h"
 #include "screen.h"
 
