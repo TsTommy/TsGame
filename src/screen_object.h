@@ -26,8 +26,9 @@ public:
 private:
 	int x_;
 	int y_;
-	int yvel_;
-	int jump_strength_;
+	double xvel_;
+	double yvel_;
+	double jump_strength_;
 	box<animation> animation_;
 };
 
