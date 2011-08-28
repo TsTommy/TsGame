@@ -2,7 +2,7 @@
 #define ANIMATION_H_INCLUDED
 
 #include <string>
-#include <SDL.h>
+#include <SDL/SDL.h>
 
 #include "box.h"
 #ifdef BOX

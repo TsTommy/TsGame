@@ -1,7 +1,7 @@
 #ifndef SCREEN_H_INCLUDED
 #define SCREEN_H_INCLUDED
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <set>
 #include "box.h"
 #ifdef BOX
