@@ -1,23 +1,24 @@
-#ifndef SCREEN_OBJECT_H_INCLUDED
-#define SCREEN_OBJECT_H_INCLUDED
+#ifndef IMAGE_H_INCLUDED
+#define IMAGE_H_INCLUDED
 
 #include "box.h"
 #include "tag.h"
 
 template<typename Tag = normal_tag>
-class screen_object
+class image
 {
 public:
+	image();
 	void draw();
 
 private:
 };
 
 template<>
-class screen_object<stub_tag>
+class image<stub_tag>
 {
 public:
-	screen_object();
+	image();
 	void draw();
 
 	size_t draw_count();
@@ -26,4 +27,4 @@ private:
 	size_t counter_;
 };
 
-#endif //SCREEN_OBJECT_H_INCLUDED
+#endif //IMAGE_H_INCLUDED

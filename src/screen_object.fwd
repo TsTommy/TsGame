@@ -1,0 +1,9 @@
+#ifndef SCREEN_OBJECT_FWD_INCLUDED
+#define SCREEN_OBJECT_FWD_INCLUDED
+
+#include "tag.h"
+
+template<typename Tag = normal_tag>
+class screen_object;
+
+#endif //SCREEN_OBJECT_FWD_INCLUDED

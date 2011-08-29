@@ -41,8 +41,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../src"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				AdditionalIncludeDirectories="../../src;../../external/include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -63,6 +63,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="cppunitd.lib"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="../../external/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -88,7 +89,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Running unit tests..."
-				CommandLine="$(TargetPath)"
+				CommandLine="($(TargetPath)) || (&quot;C:\Program Files\Git\bin\touch.exe&quot; ../../src/test/testmain.cpp)"
 			/>
 		</Configuration>
 		<Configuration
@@ -138,6 +139,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="cppunit.lib"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="../../external/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -172,6 +174,22 @@
 	<References>
 	</References>
 	<Files>
+		<File
+			RelativePath="..\..\src\test\image_test.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\test\image_test.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\test\screen_test.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\test\screen_test.h"
+			>
+		</File>
 		<File
 			RelativePath="..\..\src\test\testmain.cpp"
 			>

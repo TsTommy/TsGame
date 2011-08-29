@@ -1,0 +1,6 @@
+#include "box.h"
+#ifdef BOX
+	#include "screen_object.fwd"
+#else
+	#include "screen_object.h"
+#endif

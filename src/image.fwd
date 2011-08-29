@@ -1,0 +1,12 @@
+#ifndef IMAGE_FWD_INCLUDED
+#define IMAGE_FWD_INCLUDED
+
+#include "tag.h"
+
+template<typename Tag = normal_tag>
+class image;
+
+//template<>
+//class image<stub_tag>;
+
+#endif //IMAGE_FWD_INCLUDED

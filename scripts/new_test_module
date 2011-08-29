@@ -34,24 +34,28 @@ echo >> src/test/${classname}_test.h 'class ${test_class}'
 echo >> src/test/${classname}_test.h '		: public CppUnit::TestFixture'
 echo >> src/test/${classname}_test.h '{'
 echo >> src/test/${classname}_test.h '	CPPUNIT_TEST_SUITE(${test_class});'
-echo >> src/test/${classname}_test.h '	CPPUNIT_TEST(/*testname*/);'
+echo >> src/test/${classname}_test.h '	CPPUNIT_TEST(test_drive);'
 echo >> src/test/${classname}_test.h '	CPPUNIT_TEST_SUITE_END();'
 echo >> src/test/${classname}_test.h
 echo >> src/test/${classname}_test.h 'public:'
 echo >> src/test/${classname}_test.h '	void setUp();'
 echo >> src/test/${classname}_test.h '	void tearDown();'
 echo >> src/test/${classname}_test.h
-echo >> src/test/${classname}_test.h '	void /*testname*/();'
+echo >> src/test/${classname}_test.h '	void test_drive();'
 echo >> src/test/${classname}_test.h
 echo >> src/test/${classname}_test.h 'private:'
 echo >> src/test/${classname}_test.h '};'
 echo >> src/test/${classname}_test.h
 echo >> src/test/${classname}_test.h '#endif //${test_guard}'
 echo Creating ${test_class}.cpp ...
-echo >  src/test/${classname}_test.cpp '#include "${classname}.h"'
+echo >  src/test/${classname}_test.cpp '#include "tag.h"'
+echo >> src/test/${classname}_test.cpp
+echo >> src/test/${classname}_test.cpp '#include "${classname}.h"'
 echo >> src/test/${classname}_test.cpp '#include "test/${test_class}.h"'
 echo >> src/test/${classname}_test.cpp
 echo >> src/test/${classname}_test.cpp 'CPPUNIT_TEST_SUITE_REGISTRATION(${test_class});'
+echo >> src/test/${classname}_test.cpp
+echo >> src/test/${classname}_test.cpp 'typedef ${classname}<isolated_tag> isolated_t;'
 echo >> src/test/${classname}_test.cpp
 echo >> src/test/${classname}_test.cpp 'void ${test_class}::setUp()'
 echo >> src/test/${classname}_test.cpp '{'
@@ -60,9 +64,9 @@ echo >> src/test/${classname}_test.cpp 'void ${test_class}::tearDown()'
 echo >> src/test/${classname}_test.cpp '{'
 echo >> src/test/${classname}_test.cpp '}'
 echo >> src/test/${classname}_test.cpp
-echo >> src/test/${classname}_test.cpp 'void ${test_class}::/*testname*/()'
+echo >> src/test/${classname}_test.cpp 'void ${test_class}::test_drive()'
 echo >> src/test/${classname}_test.cpp '{'
-echo >> src/test/${classname}_test.cpp '	CPPUNIT_ASSERT(false);'
+echo >> src/test/${classname}_test.cpp '	CPPUNIT_ASSERT_EQUAL(0,1);'
 echo >> src/test/${classname}_test.cpp '}'
 echo Done.
 END

@@ -15,33 +15,73 @@ error('Incorrect arguments.') if(@ARGV != 1);
 
 my ($classname) = @ARGV;
 
-error("Directory 'src' not found.") unless (`ls src/.`);
-error("${classname}.h exists.")    if(`ls src/${classname}.h`);
-error("${classname}.cpp exists.")  if(`ls src/${classname}.cpp`);
+error("Directory 'src' not found.") unless(`ls src/.`);
+error("${classname}.fwd exists.") if(`ls src/${classname}.fwd`);
+error("${classname}.h exists.")   if(`ls src/${classname}.h`);
+error("${classname}.box exists.") if(`ls src/${classname}.box`);
+error("${classname}.cpp exists.") if(`ls src/${classname}.cpp`);
 
+my $fwd_guard = uc($classname).'_FWD_INCLUDED';
 my $guard = uc($classname).'_H_INCLUDED';
 
 my $script = <<"END"
+echo Creating ${classname}.fwd ...
+echo >  src/${classname}.fwd '#ifndef ${fwd_guard}'
+echo >> src/${classname}.fwd '#define ${fwd_guard}'
+echo >> src/${classname}.fwd
+echo >> src/${classname}.fwd '#include "tag.h"'
+echo >> src/${classname}.fwd
+echo >> src/${classname}.fwd 'template<typename Tag = normal_tag>'
+echo >> src/${classname}.fwd 'class ${classname};'
+echo >> src/${classname}.fwd
+echo >> src/${classname}.fwd '#endif //${fwd_guard}'
 echo Creating ${classname}.h ...
 echo >  src/${classname}.h '#ifndef ${guard}'
 echo >> src/${classname}.h '#define ${guard}'
 echo >> src/${classname}.h
 echo >> src/${classname}.h '#include "box.h"'
-echo >> src/${classname}.h '#ifdef BOX'
-echo >> src/${classname}.h '#else'
-echo >> src/${classname}.h '#endif'
+echo >> src/${classname}.h '#include "tag.h"'
 echo >> src/${classname}.h
+echo >> src/${classname}.h 'template<typename Tag = normal_tag>'
 echo >> src/${classname}.h 'class ${classname}'
 echo >> src/${classname}.h '{'
 echo >> src/${classname}.h 'public:'
+echo >> src/${classname}.h '	${classname}();'
+echo >> src/${classname}.h
+echo >> src/${classname}.h 'private:'
+echo >> src/${classname}.h '};'
+echo >> src/${classname}.h
+echo >> src/${classname}.h 'template<>'
+echo >> src/${classname}.h 'class ${classname}<stub_tag>'
+echo >> src/${classname}.h '{'
+echo >> src/${classname}.h 'public:'
+echo >> src/${classname}.h '	${classname}();'
 echo >> src/${classname}.h
 echo >> src/${classname}.h 'private:'
 echo >> src/${classname}.h '};'
 echo >> src/${classname}.h
 echo >> src/${classname}.h '#endif //${guard}'
+echo Creating ${classname}.box ...
+echo >  src/${classname}.box '#include "box.h"'
+echo >> src/${classname}.box '#ifdef BOX'
+echo >> src/${classname}.box '	#include "${classname}.fwd"'
+echo >> src/${classname}.box '#else'
+echo >> src/${classname}.box '	#include "${classname}.h"'
+echo >> src/${classname}.box '#endif'
 echo Creating ${classname}.cpp ...
 echo >  src/${classname}.cpp '#include "${classname}.h"'
 echo >> src/${classname}.cpp
+echo >> src/${classname}.cpp 'template<typename Tag>'
+echo >> src/${classname}.cpp '${classname}<Tag>::${classname}()'
+echo >> src/${classname}.cpp '	{}'
+echo >> src/${classname}.cpp
+echo >> src/${classname}.cpp '//stub definitions'
+echo >> src/${classname}.cpp '${classname}<stub_tag>::${classname}()'
+echo >> src/${classname}.cpp '	{}'
+echo >> src/${classname}.cpp
+echo >> src/${classname}.cpp '//explicit instantiation'
+echo >> src/${classname}.cpp 'template {${classname}<normal_tag>;'
+echo >> src/${classname}.cpp 'template {${classname}<isolated_tag>;'
 echo Done.
 END
 ;

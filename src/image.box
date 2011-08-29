@@ -1,0 +1,6 @@
+#include "box.h"
+#ifdef BOX
+	#include "image.fwd"
+#else
+	#include "image.h"
+#endif

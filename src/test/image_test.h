@@ -1,12 +1,12 @@
-#ifndef SCREEN_TEST_H_INCLUDED
-#define SCREEN_TEST_H_INCLUDED
+#ifndef IMAGE_TEST_H_INCLUDED
+#define IMAGE_TEST_H_INCLUDED
 
 #include <cppunit/extensions/HelperMacros.h>
 
-class screen_test
+class image_test
 		: public CppUnit::TestFixture
 {
-	CPPUNIT_TEST_SUITE(screen_test);
+	CPPUNIT_TEST_SUITE(image_test);
 	CPPUNIT_TEST(test_drive);
 	CPPUNIT_TEST_SUITE_END();
 
@@ -19,4 +19,4 @@ public:
 private:
 };
 
-#endif //SCREEN_TEST_H_INCLUDED
+#endif //IMAGE_TEST_H_INCLUDED

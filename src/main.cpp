@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "game.h"
+#include "screen.h"
 
 inline static void pause()
 {
@@ -16,3 +17,4 @@ int main(int argc, char** argv)
 
  	return argc+argv, 0;
 }
+

@@ -1,6 +1,10 @@
 #ifndef BOX_H_INCLUDED
 #define BOX_H_INCLUDED
 
+#ifdef DEBUG
+#	define BOX
+#endif
+
 #ifdef BOX
 
 #include <boost/shared_ptr.hpp>

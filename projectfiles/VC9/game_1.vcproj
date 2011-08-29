@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../src;../../external/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;DEBUG;BOX"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -176,14 +176,6 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\..\src\animation.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\animation.h"
-			>
-		</File>
-		<File
 			RelativePath="..\..\src\box.h"
 			>
 		</File>
@@ -200,6 +192,18 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\image.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\image.fwd"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\image.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\main.cpp"
 			>
 		</File>
@@ -208,15 +212,19 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\src\platform.cpp"
-			>
-		</File>
-		<File
 			RelativePath="..\..\src\platform.h"
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\screen.box"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\screen.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\screen.fwd"
 			>
 		</File>
 		<File
@@ -229,6 +237,10 @@
 		</File>
 		<File
 			RelativePath="..\..\src\screen_object.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\tag.h"
 			>
 		</File>
 	</Files>

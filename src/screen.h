@@ -1,32 +1,29 @@
 #ifndef SCREEN_H_INCLUDED
 #define SCREEN_H_INCLUDED
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <set>
-#include "box.h"
-#ifdef BOX
-	class screen_object;
-#else
-	#include "screen_object.h"
-#endif
 
+#include "image.box"
+#include "screen_object.fwd"
+#include "tag.h"
+
+template<typename Tag = normal_tag>
 class screen
-		: public std::set<box<screen_object> >
 {
-	typedef std::set<box<screen_object> > base_t;
-
 public:
+	typedef screen_object<typename Tag::neighbor_tag> object;
+
 	screen();
 
-	void blit(SDL_Surface&, int x, int y);
 	void draw();
 
-	using base_t::insert;
-	using base_t::erase;
+	void add(object& x);
+	void remove(object& x);
 
 private:
-	SDL_Surface* screen_;
-	std::set<screen_object*> objects_;
+	box<image<typename Tag::neighbor_tag> > screen_;
+	std::set<object*> objects_;
 };
 
 #endif //SCREEN_H_INCLUDED
