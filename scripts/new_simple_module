@@ -1,0 +1,48 @@
+#!/bin/perl
+
+use strict;
+use warnings;
+
+sub error
+{
+  my ($errmsg) = @_;
+  print("$errmsg\n");
+  print("Usage: $0 MODULE_NAME\n");
+  exit(1);
+}
+
+error('Incorrect arguments.') if(@ARGV != 1);
+
+my ($classname) = @ARGV;
+
+error("Directory 'src' not found.") unless(`ls src/.`);
+error("${classname}.h exists.")   if(`ls src/${classname}.h`);
+error("${classname}.cpp exists.") if(`ls src/${classname}.cpp`);
+
+my $guard = uc($classname).'_H_INCLUDED';
+
+my $script = <<"END"
+echo Creating ${classname}.h ...
+echo >  src/${classname}.h '#ifndef ${guard}'
+echo >> src/${classname}.h '#define ${guard}'
+echo >> src/${classname}.h
+echo >> src/${classname}.h 'class ${classname}'
+echo >> src/${classname}.h '{'
+echo >> src/${classname}.h 'public:'
+echo >> src/${classname}.h '	${classname}();'
+echo >> src/${classname}.h
+echo >> src/${classname}.h 'private:'
+echo >> src/${classname}.h '};'
+echo >> src/${classname}.h
+echo >> src/${classname}.h '#endif //${guard}'
+echo Creating ${classname}.cpp ...
+echo >  src/${classname}.cpp '#include "${classname}.h"'
+echo >> src/${classname}.cpp
+echo >> src/${classname}.cpp '${classname}::${classname}()'
+echo >> src/${classname}.cpp '	{}'
+echo >> src/${classname}.cpp
+echo Done.
+END
+;
+
+print(`$script`);

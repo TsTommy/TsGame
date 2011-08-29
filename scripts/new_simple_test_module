@@ -48,14 +48,10 @@ echo >> src/test/${classname}_test.h '};'
 echo >> src/test/${classname}_test.h
 echo >> src/test/${classname}_test.h '#endif //${test_guard}'
 echo Creating ${test_class}.cpp ...
-echo >  src/test/${classname}_test.cpp '#include "tag.h"'
-echo >> src/test/${classname}_test.cpp
-echo >> src/test/${classname}_test.cpp '#include "${classname}.h"'
+echo >  src/test/${classname}_test.cpp '#include "${classname}.h"'
 echo >> src/test/${classname}_test.cpp '#include "test/${test_class}.h"'
 echo >> src/test/${classname}_test.cpp
 echo >> src/test/${classname}_test.cpp 'CPPUNIT_TEST_SUITE_REGISTRATION(${test_class});'
-echo >> src/test/${classname}_test.cpp
-echo >> src/test/${classname}_test.cpp 'typedef ${classname}<isolated_tag> isolated_t;'
 echo >> src/test/${classname}_test.cpp
 echo >> src/test/${classname}_test.cpp 'void ${test_class}::setUp()'
 echo >> src/test/${classname}_test.cpp '{'
