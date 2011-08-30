@@ -14,6 +14,9 @@ public:
 
 	void draw(screen_t&) const;
 
+	void move_to(point const& dest) {pos_ = dest;}
+	point const& pos() const {return pos_;}
+
 private:
 	point pos_;
 	animation anim_;

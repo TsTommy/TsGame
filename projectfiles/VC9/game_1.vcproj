@@ -189,6 +189,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\frame_rate_tracker.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\game.cpp"
 			>
 		</File>

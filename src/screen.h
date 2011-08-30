@@ -17,8 +17,8 @@ public:
 
 	void draw();
 
-	void add(object*);
-	void remove(object*);
+	void add(object&);
+	void remove(object&);
 
 private:
 	surface screen_;

@@ -10,14 +10,14 @@ screen::screen(dimensions const& dim)
 		, objects_()
 	{}
 
-void screen::add(object* obj)
+void screen::add(object& obj)
 {
-	objects_.insert(obj);
+	objects_.insert(&obj);
 }
 
-void screen::remove(object* obj)
+void screen::remove(object& obj)
 {
-	objects_.erase(obj);
+	objects_.erase(&obj);
 }
 
 void screen::draw()

@@ -4,7 +4,7 @@
 #include <cassert>
 #include <SDL/SDL.h>
 #include "screen.h"
-#include "screen_object.h"
+#include "player.h"
 
 struct scoped_sdl {
 	scoped_sdl() {bool success = (SDL_Init(SDL_INIT_EVERYTHING) >= 0); assert(success);}
@@ -20,7 +20,7 @@ public:
 
 private:
 	screen screen_;
-	screen_object player_;
+	player player_;
 };
 
 #endif //GAME_H_INCLUDED
