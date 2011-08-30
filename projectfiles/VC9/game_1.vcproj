@@ -181,7 +181,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\src\box.h"
+			RelativePath="..\..\src\dimensions.h"
 			>
 		</File>
 		<File
@@ -194,6 +194,14 @@
 		</File>
 		<File
 			RelativePath="..\..\src\game.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\image.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\image.h"
 			>
 		</File>
 		<File
@@ -213,6 +221,18 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\player.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\player.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\point.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\screen.cpp"
 			>
 		</File>
@@ -226,6 +246,10 @@
 		</File>
 		<File
 			RelativePath="..\..\src\screen_object.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\surface.h"
 			>
 		</File>
 	</Files>

@@ -1,36 +1,22 @@
 #ifndef SCREEN_OBJECT_H_INCLUDED
 #define SCREEN_OBJECT_H_INCLUDED
 
-#include <SDL.h>
-#include <set>
-
-#include "box.h"
-#ifdef BOX
-	class animation;
-#else
-	#include "animation.h"
-#endif
-
-class platform;
-class screen;
+#include "animation.h"
+#include "point.h"
+#include "surface.h"
 
 class screen_object
 {
 public:
-	screen_object(int x, int y);
+	typedef animation::screen_t screen_t;
+	screen_object(point const& pos, char const* filename);
+	screen_object(point const& pos, std::string const& filename);
 
-	int x() const {return x_;}
-	int y() const {return y_;}
-	void draw(screen&) const;
-
-	void on_frame(Uint8* keyboard, std::set<platform> const&);
-	void on_jump(std::set<platform> const&);
+	void draw(screen_t&) const;
 
 private:
-	int x_;
-	int y_;
-	int yvel_;
-	box<animation> animation_;
+	point pos_;
+	animation anim_;
 };
 
 #endif //SCREEN_OBJECT_H_INCLUDED

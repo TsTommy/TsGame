@@ -1,16 +1,13 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
-#include <SDL.h>
-#include "box.h"
-#ifdef BOX
-	class screen;
-#else
-	#include "screen.h"
-#endif
+#include <cassert>
+#include <SDL/SDL.h>
+#include "screen.h"
+#include "screen_object.h"
 
 struct scoped_sdl {
-	scoped_sdl() {if(SDL_Init(SDL_INIT_EVERYTHING)<0) throw 0;}
+	scoped_sdl() {bool success = (SDL_Init(SDL_INIT_EVERYTHING) >= 0); assert(success);}
 	~scoped_sdl() {SDL_Quit();}
 };
 
@@ -22,10 +19,8 @@ public:
 	void play();
 
 private:
-	void do_event_loop();
-	int frame_interval() const {return 16;}
-
-	box<screen> screen_;
+	screen screen_;
+	screen_object player_;
 };
 
 #endif //GAME_H_INCLUDED

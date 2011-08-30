@@ -12,6 +12,7 @@ int main(int argc, char** argv)
 {
 	game g;
 	g.play();
+	pause();
 	//g.~game()
 
  	return argc+argv, 0;
