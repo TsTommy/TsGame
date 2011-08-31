@@ -1,7 +1,9 @@
 #include "game.h"
 
 #include <iostream>
+#include <boost/lexical_cast.hpp>
 #include "dimensions.h"
+#include "frame_rate_tracker.h"
 #include "path.h"
 #include "screen.h"
 #include "screen_object.h"
@@ -10,6 +12,7 @@
 game::game()
 		: scoped_sdl()
 		, screen_(dimensions(640,480))
+		, keyb_()
 		, player_(point(50,50),screen_)
 	{}
 
@@ -20,18 +23,23 @@ public:
 	frame_regulator(unsigned interval)
 			: frame_num_(0)
 			, interval_(interval)
+			, curr_time_(0)
 		{}
 
 	bool time_for_next_frame()
 	{
 		bool result;
-		unsigned new_frame_num = SDL_GetTicks()/interval_;
+		curr_time_ = SDL_GetTicks();
+		unsigned new_frame_num = curr_time_/interval_;
 		result = (frame_num_ < new_frame_num);
 		frame_num_ = new_frame_num;
 		return result;
 	}
 
+	Uint32 time() const {return curr_time_;}
+
 private:
+	Uint32 curr_time_;
 	unsigned frame_num_;
 	unsigned interval_;
 };
@@ -41,6 +49,7 @@ private:
 void game::play()
 {
 	frame_regulator fr(16);
+	frame_rate_tracker frt;
 
 	//event loop
 	for(;;)
@@ -59,15 +68,17 @@ void game::play()
 		//possibly process a frame
 		if(fr.time_for_next_frame())
 		{
+			frt.on_frame(fr.time());
+
 			//update state
-			player_.on_frame();
+			player_.on_frame(keyb_);
 
 			//output
+			SDL_WM_SetCaption(boost::lexical_cast<std::string>(frt.frame_rate()).c_str(),NULL);
 			screen_.draw();
-		} //end process a frame
-	} //end event loop
+		}
+	}
 }
-
 
 #if 0
 {

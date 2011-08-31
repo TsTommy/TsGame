@@ -3,8 +3,9 @@
 
 #include <cassert>
 #include <SDL/SDL.h>
-#include "screen.h"
+#include "keyboard.h"
 #include "player.h"
+#include "screen.h"
 
 struct scoped_sdl {
 	scoped_sdl() {bool success = (SDL_Init(SDL_INIT_EVERYTHING) >= 0); assert(success);}
@@ -16,10 +17,12 @@ class game
 {
 public:
 	game();
+
 	void play();
 
 private:
 	screen screen_;
+	keyboard keyb_;
 	player player_;
 };
 

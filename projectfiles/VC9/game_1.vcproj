@@ -48,6 +48,7 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
+				WarnAsError="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -209,6 +210,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\keyboard.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\main.cpp"
 			>
 		</File>
@@ -233,6 +238,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\point-inl.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\point.h"
 			>
 		</File>
@@ -254,6 +263,14 @@
 		</File>
 		<File
 			RelativePath="..\..\src\surface.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\vec-inl.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\vec.h"
 			>
 		</File>
 	</Files>

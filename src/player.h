@@ -2,8 +2,9 @@
 #define PLAYER_H_INCLUDED
 
 #include <boost/noncopyable.hpp>
-#include "point.h"
 #include "screen_object.h"
+#include "vec.h"
+class keyboard;
 class screen;
 
 class player
@@ -14,14 +15,16 @@ public:
 
 	void add_to_screen(screen&) const;
 
-	void on_frame();
+	void on_frame(keyboard const& k);
 	void on_jump();
 
 private:
 	bool is_on_floor() const;
+	void move_to(vec const&);
 
 	screen_object body_;
-	point velocity_;
+	vec pos_;
+	vec veloc_;
 	screen& screen_;
 };
 
