@@ -6,8 +6,8 @@
 #include "dimensions.h"
 #include "point.h"
 
-//wrapper class for SDL_Surface*
-//DOES NOT own the underlying pointer
+///wrapper class for SDL_Surface*
+///DOES NOT own the underlying pointer
 class surface
 {
 public:

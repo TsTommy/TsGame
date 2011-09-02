@@ -2,8 +2,11 @@
 #define GAME_H_INCLUDED
 
 #include <cassert>
+#include <set>
+#include <boost/shared_ptr.hpp>
 #include <SDL/SDL.h>
 #include "keyboard.h"
+#include "platform.h"
 #include "player.h"
 #include "screen.h"
 
@@ -24,6 +27,7 @@ private:
 	screen screen_;
 	keyboard keyb_;
 	player player_;
+	std::set<boost::shared_ptr<platform> > plats_;
 };
 
 #endif //GAME_H_INCLUDED

@@ -2,12 +2,12 @@
 #define IMAGE_H_INCLUDED
 
 #include <boost/noncopyable.hpp>
+#include <boost/shared_ptr.hpp>
 #include <string>
 #include "point.h"
 #include "surface.h"
 
 class image
-		: private boost::noncopyable
 {
 public:
 	typedef surface screen_t;
@@ -19,7 +19,7 @@ public:
 	void draw(screen_t&, point const&) const;
 
 private:
-	surface surface_;
+	boost::shared_ptr<SDL_Surface> surface_;
 };
 
 #endif //IMAGE_H_INCLUDED

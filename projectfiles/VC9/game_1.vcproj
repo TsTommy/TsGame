@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="sdl.lib sdlmain.lib opengl32.lib glu32.lib"
+				AdditionalDependencies="sdl.lib sdlmain.lib sdl_image.lib opengl32.lib glu32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../external/lib"
 				GenerateDebugInformation="true"
@@ -182,6 +182,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\data.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\data.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\dimensions.h"
 			>
 		</File>
@@ -199,6 +207,14 @@
 		</File>
 		<File
 			RelativePath="..\..\src\game.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\game_state.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\game_state.h"
 			>
 		</File>
 		<File

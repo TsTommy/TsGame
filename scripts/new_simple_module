@@ -16,8 +16,8 @@ error('Incorrect arguments.') if(@ARGV != 1);
 my ($classname) = @ARGV;
 
 error("Directory 'src' not found.") unless(`ls src/.`);
-error("${classname}.h exists.")   if(`ls src/${classname}.h`);
-error("${classname}.cpp exists.") if(`ls src/${classname}.cpp`);
+error("${classname}.h exists.")   if(`ls src/${classname}.h 2>&-`);
+error("${classname}.cpp exists.") if(`ls src/${classname}.cpp 2>&-`);
 
 my $guard = uc($classname).'_H_INCLUDED';
 

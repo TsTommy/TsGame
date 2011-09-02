@@ -11,9 +11,10 @@
 
 game::game()
 		: scoped_sdl()
-		, screen_(dimensions(640,480))
+		, screen_(dimensions(1600,900))
 		, keyb_()
 		, player_(point(50,50),screen_)
+		, plats_()
 	{}
 
 namespace {
@@ -48,6 +49,34 @@ private:
 
 void game::play()
 {
+	//hard-coded platforms
+	std::vector<boost::shared_ptr<platform> > temp_plats;
+	boost::shared_ptr<platform> plat(new platform(vec(-100,440),vec(740,440),IMAGE("floor.PNG"),screen_));
+	temp_plats.push_back(plat);
+	plat.reset(new platform(vec(300,400),vec(400,400),IMAGE("flat.PNG"),screen_));
+	temp_plats.push_back(plat);
+	plat.reset(new platform(vec(400,400),vec(500,350),IMAGE("slant.PNG"),screen_));
+	temp_plats.push_back(plat);
+	plat.reset(new platform(vec(500,350),vec(600,350),IMAGE("flat.PNG"),screen_));
+	temp_plats.push_back(plat);
+	plat.reset(new platform(vec(740,440),vec(790,-60),IMAGE("wall.PNG"),screen_));
+	temp_plats.push_back(plat);
+	temp_plats[0]->set_right_neighbor(&*temp_plats[4]);
+	temp_plats[1]->set_right_neighbor(&*temp_plats[2]);
+	temp_plats[2]->set_left_neighbor(&*temp_plats[1]);
+	temp_plats[2]->set_right_neighbor(&*temp_plats[3]);
+	temp_plats[3]->set_left_neighbor(&*temp_plats[2]);
+	temp_plats[4]->set_left_neighbor(&*temp_plats[0]);
+	plats_.insert(temp_plats.begin(),temp_plats.end());
+	//debug
+	#if 0
+	for(int i = 0; i<10000; ++i)
+	{
+		plat.reset(new platform(vec(300,700),vec(400,700),IMAGE("flat.PNG"),screen_));
+		plats_.insert(plat);
+	}
+	#endif
+
 	frame_regulator fr(16);
 	frame_rate_tracker frt;
 
@@ -60,23 +89,28 @@ void game::play()
 		{
 			if(ev.type==SDL_QUIT)
 				return;
-			else if(ev.type==SDL_KEYDOWN)
+			//else if(ev.type==SDL_KEYUP) //non-debug
+			else if(ev.type==SDL_KEYDOWN) //debug
 				if(ev.key.keysym.sym==SDLK_SPACE)
-					player_.on_jump();
+					player_.on_jump(keyb_);
+//				else if(ev.key.keysym.sym==SDLK_RETURN)
+//					{player_.on_frame(keyb_,plats_);   screen_.draw();}
 		}
 
+//#if 0
 		//possibly process a frame
 		if(fr.time_for_next_frame())
 		{
 			frt.on_frame(fr.time());
 
 			//update state
-			player_.on_frame(keyb_);
+			player_.on_frame(keyb_,plats_);
 
 			//output
 			SDL_WM_SetCaption(boost::lexical_cast<std::string>(frt.frame_rate()).c_str(),NULL);
 			screen_.draw();
 		}
+//#endif
 	}
 }
 

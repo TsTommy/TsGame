@@ -23,7 +23,16 @@ void screen::remove(object& obj)
 void screen::draw()
 {
 	screen_.clear();
+	int counter = 0;
 	foreach(object* obj, objects_)
+	{
 		obj->draw(screen_);
+		++counter;
+		//debug
+		#if 0
+		if(counter >= 6)
+			break;
+		#endif
+	}
 	screen_.flip();
 }
