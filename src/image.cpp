@@ -9,13 +9,23 @@ namespace {
 
 image::image(char const* filename)
 		: surface_(IMG_Load(filename),surface_deleter())
-	{}
+{
+	init();
+}
 
 image::image(std::string const& filename)
 		: surface_(IMG_Load(filename.c_str()),surface_deleter())
-	{}
+{
+	init();
+}
 
 void image::draw(screen_t& s, point const& p) const
 {
 	surface(&*surface_).blit(s,p);
+}
+
+/*private*/
+void image::init()
+{
+	assert(surface_);
 }

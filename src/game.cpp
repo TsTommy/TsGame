@@ -51,15 +51,15 @@ void game::play()
 {
 	//hard-coded platforms
 	std::vector<boost::shared_ptr<platform> > temp_plats;
-	boost::shared_ptr<platform> plat(new platform(vec(-100,440),vec(740,440),IMAGE("floor.PNG"),screen_));
+	boost::shared_ptr<platform> plat(new platform(vec(-100,880),vec(1600,0),ANIMATION("floor.data"),screen_));
 	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(300,400),vec(400,400),IMAGE("flat.PNG"),screen_));
+	plat.reset(new platform(vec(600,700),vec(200,0),ANIMATION("flat.data"),screen_));
 	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(400,400),vec(500,350),IMAGE("slant.PNG"),screen_));
+	plat.reset(new platform(vec(800,700),vec(200,-100),ANIMATION("slant.data"),screen_));
 	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(500,350),vec(600,350),IMAGE("flat.PNG"),screen_));
+	plat.reset(new platform(vec(1000,600),vec(200,0),ANIMATION("flat.data"),screen_));
 	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(740,440),vec(790,-60),IMAGE("wall.PNG"),screen_));
+	plat.reset(new platform(vec(1500,880),vec(50,-500),ANIMATION("wall.data"),screen_));
 	temp_plats.push_back(plat);
 	temp_plats[0]->set_right_neighbor(&*temp_plats[4]);
 	temp_plats[1]->set_right_neighbor(&*temp_plats[2]);
@@ -105,6 +105,7 @@ void game::play()
 
 			//update state
 			player_.on_frame(keyb_,plats_);
+			screen_.on_frame(fr.time());
 
 			//output
 			SDL_WM_SetCaption(boost::lexical_cast<std::string>(frt.frame_rate()).c_str(),NULL);

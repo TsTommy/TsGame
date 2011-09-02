@@ -1,0 +1,16 @@
+animation
+{
+	default
+	{
+		frame
+		{
+			image = "wall.png"
+			duration = "1000"
+			hotspot
+			{
+				x="0"
+				y="0"
+			}
+		}
+	}
+}

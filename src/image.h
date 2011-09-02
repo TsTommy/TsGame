@@ -14,11 +14,12 @@ public:
 
 	image(char const*);
 	image(std::string const&);
-	~image();
 
 	void draw(screen_t&, point const&) const;
 
 private:
+	void init();
+
 	boost::shared_ptr<SDL_Surface> surface_;
 };
 

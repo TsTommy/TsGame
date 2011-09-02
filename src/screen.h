@@ -15,6 +15,7 @@ public:
 
 	screen(dimensions const&);
 
+	void on_frame(Uint32 curr_time);
 	void draw();
 
 	void add(object&);

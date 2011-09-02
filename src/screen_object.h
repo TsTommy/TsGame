@@ -16,10 +16,13 @@ public:
 
 	void move_to(point const& dest) {pos_ = dest;}
 	point const& pos() const {return pos_;}
+	void on_frame(Uint32 curr_time);
+	void set_anim_mode(std::string const&);
 
 private:
 	point pos_;
 	animation anim_;
+	std::string curr_anim_seq_;
 };
 
 #endif //SCREEN_OBJECT_H_INCLUDED

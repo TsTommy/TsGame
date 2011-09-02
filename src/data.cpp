@@ -1,5 +1,7 @@
 #include "data.h"
 
+#include <fstream>
+
 data::data()
 		: value_()
 		, child_()
@@ -52,7 +54,6 @@ void data::init(std::string const& filename)
 //===========
 //data parser
 namespace {
-#if 0
 enum parser_state {
 	SEEKING_KEY
 	, READING_KEY
@@ -61,7 +62,6 @@ enum parser_state {
 	, READING_VALUE
 	, READING_MULTI_COMMENT
 };
-#endif
 
 inline bool is_whitespace(char x)
 {
@@ -81,11 +81,11 @@ inline bool is_whitespace(char x)
 inline bool is_identifier_char(char x)
 	{return (x>='a'&&x<='z') || (x>='A'&&x<='Z') || (x=='_');}
 
-void parse(std::istream& in)
+void parse(std::istream& in, data::values_t& value_, data::children_t& child_)
 {
 	std::stringstream key_buffer;
 	std::stringstream value_buffer;
-	parser_state mode;
+	parser_state mode = SEEKING_KEY;
 	char curr;
 	while(in.good())
 	{
@@ -102,8 +102,10 @@ void parse(std::istream& in)
 				}
 				else if(is_whitespace(curr))
 					(void) 0; //ignore whitespace
+				else if(curr == '}')
+					return;
 				else
-					assert(("data::init(): Unexpected character",false));
+					throw "data::init(): Unexpected character";
 				break;
 			case READING_KEY:
 				if(is_identifier_char(curr))
@@ -114,12 +116,13 @@ void parse(std::istream& in)
 					mode = SEEKING_EQUALS_OR_BRACE;
 				else if(curr == '{')
 				{
-					child_[key_buffer.str()] = new data(in);
+					boost::shared_ptr<data> child(new data(in));
+					child_.insert(std::make_pair(key_buffer.str(),child));
 					key_buffer.str(std::string());
 					mode = SEEKING_KEY;
 				}
 				else
-					assert(("data::init(): Unexpected character",false));
+					throw "data::init(): Unexpected character";
 				break;
 			case SEEKING_EQUALS_OR_BRACE:
 				if(curr == '=')
@@ -133,7 +136,7 @@ void parse(std::istream& in)
 					mode = SEEKING_KEY;
 				}
 				else
-					assert(("data::init(): Unexpected character",false));
+					throw "data::init(): Unexpected character";
 				break;
 			case SEEKING_VALUE:
 				if(curr == '\"')
@@ -141,7 +144,7 @@ void parse(std::istream& in)
 				else if(is_whitespace(curr))
 					(void) 0; //ignore whitespace
 				else
-					assert(("data::init(): Unexpected character",false));
+					throw "data::init(): Unexpected character";
 				break;
 			case READING_VALUE:
 				if(curr == '\"')
@@ -168,7 +171,7 @@ void parse(std::istream& in)
 			if(mode == SEEKING_KEY)
 				break;
 			else
-				assert(("data::init(): Unexpected end of input stream",false));
+				throw "data::init(): Unexpected end of input stream";
 		}
 	}
 }

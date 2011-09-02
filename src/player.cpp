@@ -8,7 +8,7 @@
 #include "screen.h"
 
 player::player(point const& p, screen& s)
-		: body_(p,IMAGE("hello.PNG"))
+		: body_(p,ANIMATION("player.data"))
 		, pos_(p)
 		, veloc_(0,0)
 		, jump_strength_(0)
@@ -16,6 +16,7 @@ player::player(point const& p, screen& s)
 		, screen_(s)
 {
 	s.add(body_);
+	update_animation();
 }
 
 player::~player()
@@ -156,26 +157,39 @@ void player::on_frame(keyboard const& k, std::set<boost::shared_ptr<platform> > 
 void player::update_animation()
 {
 	std::string anim;
+#if 1
 	if(is_on_floor())
 	{
-		if(veloc_.x == 0)
+		if(abs(veloc_.x) < 1)
 			anim = "standing";
-		else //moving
+		else
 		{
 			facing_right_ = (veloc_.x > 0);
-			anim = "running";
-		}	
+			if(abs(veloc_.x) < 6)
+				anim = "walking";
+			else //moving
+				anim = "running";
+		}
 	}
 	else //airborne
-		anim = "airborne";
+	{
+		if(veloc_.y < 0) //rising
+			anim = "jump";
+		else //falling
+			anim = "fall";
+	}
 
-	anim = anim + (facing_right_? "_right": "_left");
+//	anim = anim + (facing_right_? "_right": "_left");
+#else
+	anim = "standing";
+#endif
 	body_.set_anim_mode(anim);
+
 }
 
 void player::on_jump(keyboard const& k)
 {
-	jump_strength_ = frame_interval*frame_interval*frame_interval*225u/256u/16u; //debug
+	jump_strength_ = 600u; //debug
 	if(is_on_floor() && !k[SDLK_DOWN])
 	{
 		veloc_ += standing_on_->normal() * std::sqrt(static_cast<double>(jump_strength_));

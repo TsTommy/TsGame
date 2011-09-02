@@ -2,9 +2,9 @@
 
 #include <utility>
 
-platform::platform(vec const& left_pt, vec const& right_pt, char const* filename, screen& s)
+platform::platform(vec const& left_pt, vec const& shape, char const* filename, screen& s)
 		: left_pt_(left_pt)
-		, right_pt_(right_pt)
+		, right_pt_(left_pt+shape)
 		, body_(point(static_cast<int>(std::min(left_pt_.x,right_pt_.x)),static_cast<int>(std::min(left_pt_.y,right_pt_.y)))
 				, filename)
 		, left_neighbor_(NULL)
@@ -14,9 +14,9 @@ platform::platform(vec const& left_pt, vec const& right_pt, char const* filename
 	s.add(body_);
 }
 
-platform::platform(vec const& left_pt, vec const& right_pt, std::string const& filename, screen& s)
+platform::platform(vec const& left_pt, vec const& shape, std::string const& filename, screen& s)
 		: left_pt_(left_pt)
-		, right_pt_(right_pt)
+		, right_pt_(left_pt+shape)
 		, body_(point(static_cast<int>(std::min(left_pt_.x,right_pt_.x)),static_cast<int>(std::min(left_pt_.y,right_pt_.y)))
 				, filename)
 		, left_neighbor_(NULL)

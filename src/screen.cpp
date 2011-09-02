@@ -20,6 +20,12 @@ void screen::remove(object& obj)
 	objects_.erase(&obj);
 }
 
+void screen::on_frame(Uint32 curr_time)
+{
+	foreach(object* obj, objects_)
+		obj->on_frame(curr_time);
+}
+
 void screen::draw()
 {
 	screen_.clear();
