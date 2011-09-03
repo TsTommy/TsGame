@@ -6,6 +6,7 @@
 #include <boost/shared_ptr.hpp>
 #include <SDL/SDL.h>
 #include "keyboard.h"
+#include "platform.h"
 #include "player.h"
 #include "screen.h"
 
@@ -23,10 +24,12 @@ public:
 	void play();
 
 private:
+	void load_platforms(data const&);
+
 	screen screen_;
 	keyboard keyb_;
 	player player_;
-	std::set<boost::shared_ptr<platform> > plats_;
+	std::set<platform,platform_comparator> plats_;
 };
 
 #endif //GAME_H_INCLUDED

@@ -4,7 +4,7 @@ animation
 	{
 		frame
 		{
-			image = "wall.png"
+			image = "wall_right.png"
 			duration = "1000"
 			hotspot
 			{

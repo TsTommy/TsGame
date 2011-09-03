@@ -49,6 +49,8 @@ public:
 			{assert(value_.find(k)!=value_.end());   return value_.find(k)->second;}
 		int int_value(std::string const& k) const
 			{return boost::lexical_cast<int>((*this)[k]);}
+		double double_value(std::string const& k) const
+			{return boost::lexical_cast<double>((*this)[k]);}
 
 		child_itors child_range(std::string const& k)
 		{

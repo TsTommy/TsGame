@@ -12,6 +12,7 @@ private:
 	typedef void (vec::*safe_bool)();
 
 public:
+	vec() {}
 	vec(double arg_x, double arg_y): x(arg_x), y(arg_y) {}
 	vec(point const& p);
 
@@ -49,6 +50,10 @@ public:
 
 private:
 	void safe_bool_details() {exit(1);}
+};
+
+struct vec_comparator {
+	bool operator()(vec const& a, vec const& b) const {return a.y<b.y || (a.y==b.y && a.x<b.x);}
 };
 
 #include "vec-inl.h"

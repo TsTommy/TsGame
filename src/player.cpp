@@ -74,7 +74,7 @@ void player::move_to(vec const& v)
 
 static int const frame_interval = 16;
 
-void player::on_frame(keyboard const& k, std::set<boost::shared_ptr<platform> > const& plats)
+void player::on_frame(keyboard const& k, std::set<platform,platform_comparator> const& plats)
 {
 	//accelerate
 	{
@@ -114,13 +114,13 @@ void player::on_frame(keyboard const& k, std::set<boost::shared_ptr<platform> > 
 
 	//fell onto a platform?
 	vec new_veloc = veloc_;
-	foreach(boost::shared_ptr<platform> plat, plats)
+	foreach(platform const& plat, plats)
 	{
 		bool altered = false;
-		platform const* next_plat = plat->alter_trajectory(pos_,veloc_,new_veloc,altered);
+		platform const* next_plat = plat.alter_trajectory(pos_,veloc_,new_veloc,altered);
 		if(altered)
 		{
-			standing_on_ = &*plat;
+			standing_on_ = &plat;
 			while(next_plat)
 			{
 				platform const* next_next_plat = next_plat->alter_trajectory(pos_,veloc_,new_veloc,altered);
@@ -149,6 +149,13 @@ void player::on_frame(keyboard const& k, std::set<boost::shared_ptr<platform> > 
 	}
 	else //airborne
 		jump_strength_ = 0; //can't chargeup jump
+
+	//debug
+	if(pos_.x < 0)
+	{
+		pos_.x = 0;
+		veloc_.x = 0;
+	}
 
 	update_animation(); //private helper fcn
 }

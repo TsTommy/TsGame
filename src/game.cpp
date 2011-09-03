@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <boost/lexical_cast.hpp>
+#include "data.h"
 #include "dimensions.h"
+#include "foreach.h"
 #include "frame_rate_tracker.h"
 #include "path.h"
 #include "platform.h"
@@ -55,6 +57,46 @@ static inline point toward(point const& src, point const& dst)
 	return point(x,y);
 }
 
+/*private*/
+void game::load_platforms(data const& d)
+{
+	std::map<std::string,vec> shape;
+	std::map<vec,platform*,vec_comparator> left_pt;
+	std::map<vec,platform*,vec_comparator> right_pt;
+	foreach(data const& type_data, d.child_range("platform_type"))
+		shape[type_data["name"]] = vec(type_data.double_value("x"),type_data.double_value("y"));
+
+	foreach(data const& plat_data, d.child_range("platform"))
+	{
+		std::string type = plat_data["type"];
+		vec pos = vec(plat_data.double_value("x"),plat_data.double_value("y"));
+		if(left_pt.find(pos) != left_pt.end()
+				|| right_pt.find(pos+shape[type]) != right_pt.end())
+			throw "illegal platform overlap";
+		platform* new_plat = &*plats_.insert(platform(pos,shape[type],ANIMATION(type+".data"),screen_)).first;
+		if(!new_plat)
+			throw "set insertion failure";
+		left_pt[pos] = right_pt[pos+shape[type]] = new_plat;
+		if(left_pt.find(pos+shape[type]) != left_pt.end())
+		{
+			new_plat->set_right_neighbor(left_pt[pos+shape[type]]);
+			left_pt[pos+shape[type]]->set_left_neighbor(new_plat);
+		}
+
+		if(right_pt.find(pos) != right_pt.end())
+		{
+			new_plat->set_left_neighbor(right_pt[pos]);
+			right_pt[pos]->set_right_neighbor(new_plat);
+		}
+	}
+
+	//debug
+	#if 0
+	for(int i = 0; i<300; ++i)
+		plats_.insert(platform(vec(300,700),vec(400,700),ANIMATION("flat.data"),screen_));
+	#endif
+}
+
 void game::play()
 {
 	//instructions in console window
@@ -62,33 +104,7 @@ void game::play()
 			<< "Hold shift to run.\n"
 			<< "Press spacebar to jump.\n";
 
-	//hard-coded platforms
-	std::vector<boost::shared_ptr<platform> > temp_plats;
-	boost::shared_ptr<platform> plat(new platform(vec(-100,880),vec(1600,0),ANIMATION("floor.data"),screen_));
-	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(600,700),vec(200,0),ANIMATION("flat.data"),screen_));
-	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(800,700),vec(200,-100),ANIMATION("slant.data"),screen_));
-	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(1000,600),vec(200,0),ANIMATION("flat.data"),screen_));
-	temp_plats.push_back(plat);
-	plat.reset(new platform(vec(1500,880),vec(50,-500),ANIMATION("wall.data"),screen_));
-	temp_plats.push_back(plat);
-	temp_plats[0]->set_right_neighbor(&*temp_plats[4]);
-	temp_plats[1]->set_right_neighbor(&*temp_plats[2]);
-	temp_plats[2]->set_left_neighbor(&*temp_plats[1]);
-	temp_plats[2]->set_right_neighbor(&*temp_plats[3]);
-	temp_plats[3]->set_left_neighbor(&*temp_plats[2]);
-	temp_plats[4]->set_left_neighbor(&*temp_plats[0]);
-	plats_.insert(temp_plats.begin(),temp_plats.end());
-	//debug
-	#if 0
-	for(int i = 0; i<300; ++i)
-	{
-		plat.reset(new platform(vec(300,700),vec(400,700),ANIMATION("flat.data"),screen_));
-		plats_.insert(plat);
-	}
-	#endif
+	load_platforms(data(PATH("data/platforms.data")));
 
 	frame_regulator fr(16);
 	frame_rate_tracker frt;

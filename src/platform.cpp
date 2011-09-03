@@ -26,6 +26,29 @@ platform::platform(vec const& left_pt, vec const& shape, std::string const& file
 	s.add(body_);
 }
 
+platform::platform(platform const& that)
+		: left_pt_(that.left_pt_)
+		, right_pt_(that.right_pt_)
+		, body_(that.body_)
+		, left_neighbor_(that.left_neighbor_)
+		, right_neighbor_(that.right_neighbor_)
+		, screen_(that.screen_)
+{
+	screen_.add(body_);
+}
+platform& platform::operator=(platform const& that)
+{
+	//gracefully handles self-assignment
+	left_pt_ = that.left_pt_;
+	right_pt_ = that.right_pt_;
+	body_ = that.body_;
+	left_neighbor_ = that.left_neighbor_;
+	right_neighbor_ = that.right_neighbor_;
+	if(&screen_ != &that.screen_)
+		throw "Can't change what a reference points to!";
+	return *this;
+}
+
 platform::~platform()
 {
 	screen_.remove(body_);

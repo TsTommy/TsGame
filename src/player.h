@@ -8,6 +8,7 @@
 #include "vec.h"
 class keyboard;
 class platform;
+struct platform_comparator;
 class screen;
 
 class player
@@ -21,7 +22,7 @@ public:
 
 	void add_to_screen(screen&) const;
 
-	void on_frame(keyboard const&, std::set<boost::shared_ptr<platform> > const& level);
+	void on_frame(keyboard const&, std::set<platform,platform_comparator> const& level);
 	void on_jump(keyboard const&);
 
 private:

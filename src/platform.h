@@ -8,8 +8,10 @@
 class platform
 {
 public:
-	platform(vec const& left_pt, vec const& right_pt, char const* filename, screen&);
-	platform(vec const& left_pt, vec const& right_pt, std::string const& filename, screen&);
+	platform(vec const& left_pt, vec const& shape, char const* filename, screen&);
+	platform(vec const& left_pt, vec const& shape, std::string const& filename, screen&);
+	platform(platform const&);
+	platform& operator=(platform const&);
 	~platform();
 
 	///Returns a vec that points along the line of this platform
@@ -37,6 +39,8 @@ public:
 	void set_right_neighbor(platform const* p) {right_neighbor_ = p;}
 
 private:
+	friend struct platform_comparator;
+
 	vec left_pt_;
 	vec right_pt_;
 	screen_object body_;
@@ -44,5 +48,7 @@ private:
 	platform const* right_neighbor_;
 	screen& screen_;
 };
+
+struct platform_comparator { bool operator()(platform const& a, platform const& b) const {return a.left_pt_.x < b.left_pt_.x;} };
 
 #endif //PLATFORM_H_INCLUDED
