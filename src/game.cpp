@@ -5,6 +5,7 @@
 #include "dimensions.h"
 #include "frame_rate_tracker.h"
 #include "path.h"
+#include "platform.h"
 #include "screen.h"
 #include "screen_object.h"
 

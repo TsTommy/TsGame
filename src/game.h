@@ -6,7 +6,6 @@
 #include <boost/shared_ptr.hpp>
 #include <SDL/SDL.h>
 #include "keyboard.h"
-#include "platform.h"
 #include "player.h"
 #include "screen.h"
 
