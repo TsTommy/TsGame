@@ -84,7 +84,7 @@ void player::on_frame(keyboard const& k, std::set<boost::shared_ptr<platform> > 
 		vec const AIR_ACCEL = GROUND_ACCEL/4.0;
 		vec const ACCEL = (is_on_floor()? GROUND_ACCEL: AIR_ACCEL);
 		vec const accel = ACCEL.project(x_axis);
-		double const SPEED = k[SDLK_LSHIFT]? frame_interval*10.0/16.0: frame_interval*5.0/16.0;
+		double const SPEED = k[SDLK_LSHIFT]? frame_interval*15.0/16.0: frame_interval*5.0/16.0;
 		vec const old_veloc = veloc_;
 		if(k[SDLK_LEFT] == k[SDLK_RIGHT])
 			veloc_ = approach(veloc_,vec(0,0),accel);

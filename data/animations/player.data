@@ -460,7 +460,7 @@ animation
 		
 		frame {
 			image = "player/running0001.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -471,7 +471,7 @@ animation
 		
 		frame {
 			image = "player/running0002.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -482,7 +482,7 @@ animation
 		
 		frame {
 			image = "player/running0003.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -493,7 +493,7 @@ animation
 		
 		frame {
 			image = "player/running0004.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -504,7 +504,7 @@ animation
 		
 		frame {
 			image = "player/running0005.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -515,7 +515,7 @@ animation
 		
 		frame {
 			image = "player/running0006.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -526,7 +526,7 @@ animation
 		
 		frame {
 			image = "player/running0007.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -537,7 +537,7 @@ animation
 		
 		frame {
 			image = "player/running0008.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -548,7 +548,7 @@ animation
 		
 		frame {
 			image = "player/running0009.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -559,7 +559,7 @@ animation
 		
 		frame {
 			image = "player/running0010.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -570,7 +570,7 @@ animation
 		
 		frame {
 			image = "player/running0011.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -581,7 +581,7 @@ animation
 		
 		frame {
 			image = "player/running0012.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -592,7 +592,7 @@ animation
 		
 		frame {
 			image = "player/running0013.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -603,7 +603,7 @@ animation
 		
 		frame {
 			image = "player/running0014.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -614,7 +614,7 @@ animation
 		
 		frame {
 			image = "player/running0015.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -625,7 +625,7 @@ animation
 		
 		frame {
 			image = "player/running0016.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -636,7 +636,7 @@ animation
 		
 		frame {
 			image = "player/running0017.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -647,7 +647,7 @@ animation
 		
 		frame {
 			image = "player/running0018.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -658,7 +658,7 @@ animation
 		
 		frame {
 			image = "player/running0019.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -669,7 +669,7 @@ animation
 		
 		frame {
 			image = "player/running0020.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -680,7 +680,7 @@ animation
 		
 		frame {
 			image = "player/running0021.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -691,7 +691,7 @@ animation
 		
 		frame {
 			image = "player/running0022.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -702,7 +702,7 @@ animation
 		
 		frame {
 			image = "player/running0023.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -713,7 +713,7 @@ animation
 		
 		frame {
 			image = "player/running0024.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -724,7 +724,7 @@ animation
 		
 		frame {
 			image = "player/running0025.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -735,7 +735,7 @@ animation
 		
 		frame {
 			image = "player/running0026.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -746,7 +746,7 @@ animation
 		
 		frame {
 			image = "player/running0027.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -757,7 +757,7 @@ animation
 		
 		frame {
 			image = "player/running0028.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -768,7 +768,7 @@ animation
 		
 		frame {
 			image = "player/running0029.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"
@@ -779,7 +779,7 @@ animation
 		
 		frame {
 			image = "player/running0030.png"
-			duration = "20"
+			duration = "10"
 			hotspot {
 				x = "179"
 				y = "420"

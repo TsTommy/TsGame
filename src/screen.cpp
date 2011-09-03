@@ -7,7 +7,9 @@
 
 screen::screen(dimensions const& dim)
 		: screen_(SDL_SetVideoMode(dim.w,dim.h,32,SDL_SWSURFACE))
+		, buffer_(SDL_CreateRGBSurface(SDL_SWSURFACE,1600,900,32,0,0,0,0))
 		, objects_()
+		, camera_(0,0)
 	{}
 
 void screen::add(object& obj)
@@ -28,11 +30,12 @@ void screen::on_frame(Uint32 curr_time)
 
 void screen::draw()
 {
-	screen_.clear();
+	screen_.make_all_black();
+	buffer_.clear();
 	int counter = 0;
 	foreach(object* obj, objects_)
 	{
-		obj->draw(screen_);
+		obj->draw(buffer_);
 		++counter;
 		//debug
 		#if 0
@@ -40,5 +43,6 @@ void screen::draw()
 			break;
 		#endif
 	}
+	buffer_.blit(screen_,point(-camera_.x,-camera_.y));
 	screen_.flip();
 }

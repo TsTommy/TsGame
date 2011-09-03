@@ -32,5 +32,5 @@ animation
 	sequence(`jump',`1',`179',`455',`1000')
 	sequence(`fall',`1',`179',`455',`1000')
 	weird_sequence(`walking',`30',`179',`420',`40',`running')
-	sequence(`running',`30',`179',`420',`20')
+	sequence(`running',`30',`179',`420',`10')
 }

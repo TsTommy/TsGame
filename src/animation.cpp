@@ -41,7 +41,7 @@ void animation::draw(screen_t& s, point const& pos) const
 void animation::on_frame(Uint32 curr_time)
 {
 	sequence& curr_seq = seq_[curr_seq_];
-	while(curr_seq.frames[curr_frame_].dur <= curr_time-frame_start_time_)
+	while(static_cast<int>(curr_seq.frames[curr_frame_].dur) <= static_cast<int>(curr_time)-static_cast<int>(frame_start_time_))
 	{
 		frame_start_time_ += curr_seq.frames[curr_frame_].dur;
 		if(frame_start_time_ > 1000000)

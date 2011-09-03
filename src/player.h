@@ -17,6 +17,8 @@ public:
 	player(point const& location, screen&);
 	~player();
 
+	vec pos() const {return pos_;}
+
 	void add_to_screen(screen&) const;
 
 	void on_frame(keyboard const&, std::set<boost::shared_ptr<platform> > const& level);

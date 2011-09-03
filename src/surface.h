@@ -22,6 +22,8 @@ public:
 
 	void clear()
 		{SDL_FillRect(p_,&p_->clip_rect,SDL_MapRGB(p_->format,0xFF,0xFF,0xFF));}
+	void make_all_black()
+		{SDL_FillRect(p_,&p_->clip_rect,SDL_MapRGB(p_->format,0x0,0x0,0x0));}
 	void flip()
 		{SDL_Flip(p_);}
 	void free()

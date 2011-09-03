@@ -11,7 +11,7 @@
 
 game::game()
 		: scoped_sdl()
-		, screen_(dimensions(1600,900))
+		, screen_(dimensions(800,600))
 		, keyb_()
 		, player_(point(50,50),screen_)
 		, plats_()
@@ -47,8 +47,20 @@ private:
 
 } //end anonymous namespace
 
+static inline point toward(point const& src, point const& dst)
+{
+	int x = src.x + ((dst.x-400)-src.x)/20;
+	int y = src.y + ((dst.y-500)-src.y)/20;
+	return point(x,y);
+}
+
 void game::play()
 {
+	//instructions in console window
+	std::cout << "Arrow keys to move.\n"
+			<< "Hold shift to run.\n"
+			<< "Press spacebar to jump.\n";
+
 	//hard-coded platforms
 	std::vector<boost::shared_ptr<platform> > temp_plats;
 	boost::shared_ptr<platform> plat(new platform(vec(-100,880),vec(1600,0),ANIMATION("floor.data"),screen_));
@@ -70,9 +82,9 @@ void game::play()
 	plats_.insert(temp_plats.begin(),temp_plats.end());
 	//debug
 	#if 0
-	for(int i = 0; i<10000; ++i)
+	for(int i = 0; i<300; ++i)
 	{
-		plat.reset(new platform(vec(300,700),vec(400,700),IMAGE("flat.PNG"),screen_));
+		plat.reset(new platform(vec(300,700),vec(400,700),ANIMATION("flat.data"),screen_));
 		plats_.insert(plat);
 	}
 	#endif
@@ -108,8 +120,9 @@ void game::play()
 			screen_.on_frame(fr.time());
 
 			//output
-			SDL_WM_SetCaption(boost::lexical_cast<std::string>(frt.frame_rate()).c_str(),NULL);
+			screen_.move_camera(toward(screen_.camera(),point(player_.pos())));
 			screen_.draw();
+			SDL_WM_SetCaption(boost::lexical_cast<std::string>(frt.frame_rate()).c_str(),NULL);
 		}
 //#endif
 	}
