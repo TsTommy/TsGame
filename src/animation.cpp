@@ -44,19 +44,21 @@ void animation::on_frame(Uint32 curr_time)
 	while(static_cast<int>(curr_seq.frames[curr_frame_].dur) <= static_cast<int>(curr_time)-static_cast<int>(frame_start_time_))
 	{
 		frame_start_time_ += curr_seq.frames[curr_frame_].dur;
-		if(frame_start_time_ > 1000000)
-			throw 0;
+		//debug
+		if(frame_start_time_ > 10000000)
+			throw "frame count limit reached";
 		curr_frame_ = (curr_frame_+1) % curr_seq.frames.size();
 	}
-};
+}
 
 void animation::start(std::string seq)
 {
 	curr_seq_ = seq;
 	curr_frame_ = 0;
 	frame_start_time_ = SDL_GetTicks();
-	if(frame_start_time_ > 1000000)
-		throw 0;
+	//debug
+	if(frame_start_time_ > 10000000)
+		throw "frame count limit reached";
 	assert(seq_.find(curr_seq_) != seq_.end());
 }
 
