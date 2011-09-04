@@ -141,7 +141,10 @@ bool editor::command_prompt()
 			if(curr_filename_.empty())
 				std::cout << "What would you like to name your level?\n";
 			else
+			{
 				save(curr_filename_);
+				std::cout <<"Success.\n";
+			}
 		}
 		else if(input.size() >= 5
 				&& std::equal(input.begin(),input.begin()+5,"save "))
