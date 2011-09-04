@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="test"
-	ProjectGUID="{8A59645F-CF30-4714-A0BD-C58428702DC8}"
-	RootNamespace="test"
+	Name="editor"
+	ProjectGUID="{941D1133-0788-412F-9EAC-46C75671498A}"
+	RootNamespace="editor"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -42,13 +42,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../src;../../external/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;DEBUG"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				WarnAsError="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -62,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cppunitd.lib"
+				AdditionalDependencies="sdl.lib sdlmain.lib sdl_image.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../external/lib"
 				GenerateDebugInformation="true"
@@ -89,8 +88,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Running unit tests..."
-				CommandLine="$(TargetPath)"
 			/>
 		</Configuration>
 		<Configuration
@@ -120,7 +117,6 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../external/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -139,9 +135,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cppunit.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../external/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -168,8 +162,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Running unit tests..."
-				CommandLine="$(TargetPath)"
 			/>
 		</Configuration>
 	</Configurations>
@@ -181,7 +173,15 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\..\src\test\testmain.cpp"
+			RelativePath="..\..\src\editor\editor.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\editor\editor.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\src\editor\editor_main.cpp"
 			>
 		</File>
 	</Files>

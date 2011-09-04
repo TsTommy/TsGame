@@ -12,12 +12,13 @@ class image
 public:
 	typedef surface screen_t;
 
-	image(char const*);
-	image(std::string const&);
+	image(char const* filename);
+	image(std::string const& filename);
 
 	void draw(screen_t&, point const&) const;
 
 private:
+	static SDL_Surface* load(char const* filename);
 	void init();
 
 	boost::shared_ptr<SDL_Surface> surface_;

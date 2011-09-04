@@ -1,0 +1,13 @@
+animation
+{
+	default {
+		frame {
+			image = "editor/left_select.png"
+			duration = "1000"
+			hotspot {
+				x = "15"
+				y = "8"
+			}
+		}
+	}
+}

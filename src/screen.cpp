@@ -5,11 +5,13 @@
 
 #include "screen.h"
 
-screen::screen(dimensions const& dim)
-		: screen_(SDL_SetVideoMode(dim.w,dim.h,32,SDL_SWSURFACE))
-		, buffer_(SDL_CreateRGBSurface(SDL_SWSURFACE,1600,900,32,0,0,0,0))
+screen::screen(dimensions const& camera, dimensions const& world)
+		: screen_(SDL_SetVideoMode(camera.w,camera.h,32,SDL_SWSURFACE))
+		, buffer_(SDL_CreateRGBSurface(SDL_SWSURFACE,world.w,world.h,32,0,0,0,0))
+		, zoom_buffer_(SDL_CreateRGBSurface(SDL_SWSURFACE,world.w/4,world.h/4,32,0,0,0,0))
 		, objects_()
 		, camera_(0,0)
+		, zoom_(1)
 	{}
 
 void screen::add(object& obj)
@@ -43,6 +45,14 @@ void screen::draw()
 			break;
 		#endif
 	}
-	buffer_.blit(screen_,point(-camera_.x,-camera_.y));
+	if(zoom_ < 1)
+	{
+		buffer_.scale_blit(zoom_buffer_,zoom_buffer_.width(),zoom_buffer_.height());
+		zoom_buffer_.blit(screen_,point(-camera_.x/4,-camera_.y/4));
+	}
+	else
+	{
+		buffer_.blit(screen_,point(-camera_.x,-camera_.y));
+	}
 	screen_.flip();
 }

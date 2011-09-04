@@ -14,6 +14,9 @@ public:
 	surface(SDL_Surface* p): p_(p)
 		{assert(p_);}
 
+	int width() const {return p_->w;}
+	int height() const {return p_->h;}
+
 	void blit(surface& dst, point const& p) const
 	{
 		SDL_Rect r;   r.x=p.x;   r.y=p.y;
@@ -28,6 +31,7 @@ public:
 		{SDL_Flip(p_);}
 	void free()
 		{SDL_FreeSurface(p_);}
+	surface scale_blit(surface dst, Uint16 new_w, Uint16 new_h);
 
 private:
 	SDL_Surface* const p_;

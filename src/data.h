@@ -69,7 +69,12 @@ public:
 			{assert(child_.count(k)==1);   return *child_range(k).first;}
 		data const& child(std::string const& k) const
 			{assert(child_.count(k)==1);   return *child_range(k).first;}
+
+		bool has_child(std::string const& k) const
+			{return child_.count(k) > 0;}
 	//end access to contents
+
+	std::ostream& print(std::ostream& out) const;
 
 private:
 	void init(std::istream& file);
@@ -79,5 +84,8 @@ private:
 	values_t value_;
 	children_t child_;
 };
+
+inline std::ostream& operator<<(std::ostream& out, data const& d)
+	{return d.print(out);}
 
 #endif //DATA_H_INCLUDED

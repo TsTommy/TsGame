@@ -6,6 +6,7 @@
 #include "dimensions.h"
 #include "foreach.h"
 #include "frame_rate_tracker.h"
+#include "frame_regulator.h"
 #include "path.h"
 #include "platform.h"
 #include "screen.h"
@@ -14,41 +15,11 @@
 
 game::game()
 		: scoped_sdl()
-		, screen_(dimensions(800,600))
+		, screen_(dimensions(800,600),dimensions(3000,1000))
 		, keyb_()
 		, player_(point(50,50),screen_)
 		, plats_()
 	{}
-
-namespace {
-
-class frame_regulator {
-public:
-	frame_regulator(unsigned interval)
-			: frame_num_(0)
-			, interval_(interval)
-			, curr_time_(0)
-		{}
-
-	bool time_for_next_frame()
-	{
-		bool result;
-		curr_time_ = SDL_GetTicks();
-		unsigned new_frame_num = curr_time_/interval_;
-		result = (frame_num_ < new_frame_num);
-		frame_num_ = new_frame_num;
-		return result;
-	}
-
-	Uint32 time() const {return curr_time_;}
-
-private:
-	Uint32 curr_time_;
-	unsigned frame_num_;
-	unsigned interval_;
-};
-
-} //end anonymous namespace
 
 static inline point toward(point const& src, point const& dst)
 {
@@ -63,8 +34,8 @@ void game::load_platforms(data const& d)
 	std::map<std::string,vec> shape;
 	std::map<vec,platform*,vec_comparator> left_pt;
 	std::map<vec,platform*,vec_comparator> right_pt;
-	foreach(data const& type_data, d.child_range("platform_type"))
-		shape[type_data["name"]] = vec(type_data.double_value("x"),type_data.double_value("y"));
+	foreach(data::all_children_const_iterator::value_type type_data, d.child("platform_types").all_children())
+		shape[type_data.first] = vec(type_data.second->double_value("x"),type_data.second->double_value("y"));
 
 	foreach(data const& plat_data, d.child_range("platform"))
 	{
@@ -73,9 +44,10 @@ void game::load_platforms(data const& d)
 		if(left_pt.find(pos) != left_pt.end()
 				|| right_pt.find(pos+shape[type]) != right_pt.end())
 			throw "illegal platform overlap";
-		platform* new_plat = &*plats_.insert(platform(pos,shape[type],ANIMATION(type+".data"),screen_)).first;
-		if(!new_plat)
+		std::pair<std::set<platform,platform_comparator>::iterator,bool> info = plats_.insert(platform(pos,shape[type],ANIMATION(type+".data"),screen_));
+		if(!info.second)
 			throw "set insertion failure";
+		platform* new_plat = &*info.first;
 		left_pt[pos] = right_pt[pos+shape[type]] = new_plat;
 		if(left_pt.find(pos+shape[type]) != left_pt.end())
 		{
@@ -104,7 +76,7 @@ void game::play()
 			<< "Hold shift to run.\n"
 			<< "Press spacebar to jump.\n";
 
-	load_platforms(data(PATH("data/platforms.data")));
+	load_platforms(data(PATH("data/level.data")));
 
 	frame_regulator fr(16);
 	frame_rate_tracker frt;
@@ -114,7 +86,7 @@ void game::play()
 	{
 		//process an event
 		SDL_Event ev;
-		if(SDL_PollEvent(&ev))
+		while(SDL_PollEvent(&ev))
 		{
 			if(ev.type==SDL_QUIT)
 				return;

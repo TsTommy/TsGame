@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="test"
-	ProjectGUID="{8A59645F-CF30-4714-A0BD-C58428702DC8}"
-	RootNamespace="test"
+	Name="game_1_lib"
+	ProjectGUID="{270E35FE-85DE-489B-8D2C-30FDED41CCC0}"
+	RootNamespace="game_1_lib"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="4"
 			CharacterSet="1"
 			>
 			<Tool
@@ -41,14 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../src;../../external/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;DEBUG"
+				AdditionalIncludeDirectories="../../external/include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				WarnAsError="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -61,19 +60,10 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="cppunitd.lib"
-				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../external/lib"
-				GenerateDebugInformation="true"
-				SubSystem="1"
-				TargetMachine="1"
+				Name="VCLibrarianTool"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -85,19 +75,14 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Running unit tests..."
-				CommandLine="$(TargetPath)"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="4"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -120,8 +105,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../external/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -138,21 +122,10 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="cppunit.lib"
-				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../external/lib"
-				GenerateDebugInformation="true"
-				SubSystem="1"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				TargetMachine="1"
+				Name="VCLibrarianTool"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -164,24 +137,135 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Running unit tests..."
-				CommandLine="$(TargetPath)"
 			/>
 		</Configuration>
 	</Configurations>
 	<References>
-		<ProjectReference
-			ReferencedProjectIdentifier="{270E35FE-85DE-489B-8D2C-30FDED41CCC0}"
-			RelativePathToProject=".\game_1_lib.vcproj"
-		/>
 	</References>
 	<Files>
 		<File
-			RelativePath="..\..\src\test\testmain.cpp"
+			RelativePath="..\..\src\animation.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\animation.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\data.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\data.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\dimensions.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\foreach.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\frame_rate_tracker.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\frame_regulator.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\game.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\game.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\game_state.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\game_state.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\image.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\image.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\keyboard.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\path.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\platform.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\platform.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\player.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\player.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\point-inl.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\point.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\scoped_sdl.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\screen.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\screen.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\screen_object.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\screen_object.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\surface.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\surface.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\vec-inl.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\vec.h"
 			>
 		</File>
 	</Files>

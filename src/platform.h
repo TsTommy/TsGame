@@ -34,6 +34,8 @@ public:
 
 	platform const* left_neighbor() const {return left_neighbor_;}
 	platform const* right_neighbor() const {return right_neighbor_;}
+	vec const& left_pt() const {return left_pt_;}
+	vec const& right_pt() const {return right_pt_;}
 
 	void set_left_neighbor(platform const* p) {left_neighbor_ = p;}
 	void set_right_neighbor(platform const* p) {right_neighbor_ = p;}
@@ -49,6 +51,8 @@ private:
 	screen& screen_;
 };
 
-struct platform_comparator { bool operator()(platform const& a, platform const& b) const {return a.left_pt_.x < b.left_pt_.x;} };
+struct platform_comparator : public vec_comparator {
+	bool operator()(platform const& a, platform const& b) const {return vec_comparator::operator()(a.left_pt_,b.left_pt_);}
+};
 
 #endif //PLATFORM_H_INCLUDED

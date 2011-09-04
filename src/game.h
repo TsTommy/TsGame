@@ -8,12 +8,8 @@
 #include "keyboard.h"
 #include "platform.h"
 #include "player.h"
+#include "scoped_sdl.h"
 #include "screen.h"
-
-struct scoped_sdl {
-	scoped_sdl() {bool success = (SDL_Init(SDL_INIT_EVERYTHING) >= 0); assert(success);}
-	~scoped_sdl() {SDL_Quit();}
-};
 
 class game
 		: private scoped_sdl

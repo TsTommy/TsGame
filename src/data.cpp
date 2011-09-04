@@ -1,6 +1,7 @@
 #include "data.h"
 
 #include <fstream>
+#include "foreach.h"
 
 data::data()
 		: value_()
@@ -26,6 +27,25 @@ data::data(std::string const& filename)
 		, child_()
 {
 	init(filename);
+}
+
+std::ostream& data::print(std::ostream& out) const
+{
+	foreach(values_t::value_type const& pair, value_)
+	{
+		out << pair.first << "=\"";
+		foreach(char const& c, pair.second)
+		{
+			if(c!='\"')
+				out << c;
+			else //gotta escape it
+				out << c << c;
+		}
+		out << '\"';
+	}
+	foreach(children_t::value_type const& pair, child_)
+		out << pair.first <<"{"<< *pair.second <<"}";
+	return out;
 }
 
 //forward declaration
@@ -149,10 +169,14 @@ void parse(std::istream& in, data::values_t& value_, data::children_t& child_)
 			case READING_VALUE:
 				if(curr == '\"')
 				{
-					char next = in.get();
+					char next = in.peek();
 
 					if(in.good() && next == '\"')
+					{
 						value_buffer << '\"'; //double double quote is literal double quote
+						if(!in.ignore())
+							throw "I/O problem";
+					}
 					else
 					{
 						value_[key_buffer.str()] = value_buffer.str();

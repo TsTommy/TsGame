@@ -14,9 +14,10 @@ class screen
 public:
 	typedef screen_object object;
 
-	screen(dimensions const&);
+	screen(dimensions const& camera, dimensions const& world);
 
 	point camera() const {return camera_;}
+	double zoom() const {return zoom_;}
 
 	void on_frame(Uint32 curr_time);
 	void draw();
@@ -25,12 +26,15 @@ public:
 	void remove(object&);
 
 	void move_camera(point const& p) {camera_ = p;}
+	void set_zoom(double z) {zoom_ = z;}
 
 private:
 	surface screen_;
 	surface buffer_;
+	surface zoom_buffer_;
 	std::set<object*> objects_;
 	point camera_;
+	double zoom_;
 };
 
 #endif //SCREEN_H_INCLUDED

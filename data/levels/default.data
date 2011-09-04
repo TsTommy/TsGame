@@ -1,0 +1,86 @@
+platform_types {
+	floor {
+		x = "1600"
+		y = "0"
+	}
+
+	flat {
+		x = "200"
+		y = "0"
+	}
+
+	slant {
+		x = "200"
+		y = "-100"
+	}
+
+	wall_left {
+		x = "50"
+		y = "500"
+	}
+
+	wall_right {
+		x = "50"
+		y = "-500"
+	}
+}
+
+platform {
+	type = "wall_left"
+	x = "100"
+	y = "300"
+}
+
+platform {
+	type = "wall_right"
+	x = "150"
+	y = "800"
+}
+
+platform {
+	type = "floor"
+	x = "-100"
+	y = "880"
+}
+
+platform {
+	type = "flat"
+	x = "450"
+	y = "700"
+}
+
+platform {
+	type = "flat"
+	x = "650.01"
+	y = "700"
+}
+
+platform {
+	type = "slant"
+	x = "800"
+	y = "700"
+}
+
+platform {
+	type = "flat"
+	x = "1000"
+	y = "600"
+}
+
+platform {
+	type = "wall_right"
+	x = "1500"
+	y = "880"
+}
+
+platform {
+	type = "slant"
+	x = "250"
+	y = "800"
+}
+
+platform {
+	type = "wall_left"
+	x = "200"
+	y = "300"
+}
