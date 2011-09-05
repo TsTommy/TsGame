@@ -3,3 +3,4 @@
 *.vcproj.*
 projectfiles/VC9/Debug
 projectfiles/VC9/Release
+data/levels/temp.data
