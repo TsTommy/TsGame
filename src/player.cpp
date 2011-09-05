@@ -196,7 +196,7 @@ void player::update_animation()
 
 void player::on_jump(keyboard const& k)
 {
-	jump_strength_ = 600u; //debug
+	jump_strength_ = 500u; //debug
 	if(is_on_floor() && !k[SDLK_DOWN])
 	{
 		veloc_ += standing_on_->normal() * std::sqrt(static_cast<double>(jump_strength_));
