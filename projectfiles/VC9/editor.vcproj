@@ -184,7 +184,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\editor\editor_main.cpp"
+			RelativePath="..\..\src\editor\editor_main.cpp"
 			>
 		</File>
 	</Files>
