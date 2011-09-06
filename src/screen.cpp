@@ -12,6 +12,7 @@ screen::screen(dimensions const& camera, dimensions const& world)
 		, objects_()
 		, camera_(0,0)
 		, zoom_(1)
+		, dim_(world)
 	{}
 
 void screen::add(object& obj)

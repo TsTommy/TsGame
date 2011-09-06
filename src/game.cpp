@@ -23,8 +23,8 @@ game::game()
 
 static inline point toward(point const& src, point const& dst)
 {
-	int x = src.x + ((dst.x-400)-src.x)/20;
-	int y = src.y + ((dst.y-500)-src.y)/20;
+	int x = src.x + ((dst.x-400)-src.x)/10;
+	int y = src.y + ((dst.y-500)-src.y)/10;
 	return point(x,y);
 }
 
@@ -98,7 +98,6 @@ void game::play()
 //					{player_.on_frame(keyb_,plats_);   screen_.draw();}
 		}
 
-//#if 0
 		//possibly process a frame
 		if(fr.time_for_next_frame())
 		{
@@ -108,12 +107,15 @@ void game::play()
 			player_.on_frame(keyb_,plats_);
 			screen_.on_frame(fr.time());
 
+			//bounds check
+			if(player_.pos().y > screen_.size().h+1000)
+				return;
+
 			//output
-			screen_.move_camera(toward(screen_.camera(),point(player_.pos())));
+			screen_.move_camera(toward(screen_.camera(),point(player_.camera_point())));
 			screen_.draw();
 			SDL_WM_SetCaption(boost::lexical_cast<std::string>(frt.frame_rate()).c_str(),NULL);
 		}
-//#endif
 	}
 }
 

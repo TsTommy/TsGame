@@ -19,6 +19,8 @@ public:
 	~player();
 
 	vec pos() const {return pos_;}
+	vec camera_point() const
+		{return pos_ + (facing_right_? vec(200,0): vec(-200,0));}
 
 	void add_to_screen(screen&) const;
 

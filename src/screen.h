@@ -16,6 +16,7 @@ public:
 
 	screen(dimensions const& camera, dimensions const& world);
 
+	dimensions size() const {return dim_;}
 	point camera() const {return camera_;}
 	double zoom() const {return zoom_;}
 
@@ -35,6 +36,7 @@ private:
 	std::set<object*> objects_;
 	point camera_;
 	double zoom_;
+	dimensions const dim_;
 };
 
 #endif //SCREEN_H_INCLUDED
