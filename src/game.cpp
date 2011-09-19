@@ -20,6 +20,7 @@ game::game()
 		, keyb_()
 		, player_(point(50,50),screen_)
 		, plats_()
+		, inanimates_()
 	{}
 
 static inline point toward(point const& src, point const& dst)
@@ -30,7 +31,7 @@ static inline point toward(point const& src, point const& dst)
 }
 
 /*private*/
-void game::load_platforms(data const& d)
+void game::load_level(data const& d)
 {
 	std::map<std::string,vec> shape;
 	std::map<vec,platform*,vec_comparator> left_pt;
@@ -38,6 +39,7 @@ void game::load_platforms(data const& d)
 	foreach(data::all_children_const_iterator::value_type type_data, d.child("platform_types").all_children())
 		shape[type_data.first] = vec(type_data.second->double_value("x"),type_data.second->double_value("y"));
 
+	//load platforms
 	foreach(data const& plat_data, d.child_range("platform"))
 	{
 		std::string type = plat_data["type"];
@@ -63,6 +65,15 @@ void game::load_platforms(data const& d)
 		}
 	}
 
+	//load inanimate objects (throwables)
+	foreach(data const& inanim_data, d.child_range("inanimate"))
+	{
+		std::string type = inanim_data["type"];
+		vec pos = vec(inanim_data.double_value("x"),inanim_data.double_value("y"));
+		boost::shared_ptr<inanimate> to_insert(new inanimate(pos,1.0,type,screen_));
+		inanimates_.insert(to_insert);
+	}
+
 	//debug
 	#if 0
 	for(int i = 0; i<300; ++i)
@@ -77,7 +88,7 @@ void game::play()
 			<< "Hold shift to run.\n"
 			<< "Press spacebar to jump.\n";
 
-	load_platforms(data(PATH("data/level.data")));
+	load_level(data(PATH("data/level.data")));
 
 	frame_regulator fr(16);
 	frame_rate_tracker frt;

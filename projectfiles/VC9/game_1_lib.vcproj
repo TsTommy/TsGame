@@ -214,6 +214,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\inanimate.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\inanimate.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\keyboard.h"
 			>
 		</File>

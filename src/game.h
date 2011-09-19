@@ -5,6 +5,7 @@
 #include <set>
 #include <boost/shared_ptr.hpp>
 #include <SDL/SDL.h>
+#include "inanimate.h"
 #include "keyboard.h"
 #include "platform.h"
 #include "player.h"
@@ -22,12 +23,13 @@ public:
 	void play();
 
 private:
-	void load_platforms(data const&);
+	void load_level(data const&);
 
 	screen screen_;
 	keyboard keyb_;
 	player player_;
 	std::set<platform,platform_comparator> plats_;
+	std::set<boost::shared_ptr<inanimate> > inanimates_;
 };
 
 #endif //GAME_H_INCLUDED
