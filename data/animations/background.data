@@ -1,0 +1,12 @@
+animation {
+	default {
+		frame {
+			image = "background/background_main_space.png"
+			duration = "1000"
+			hotspot {
+				x = "0"
+				y = "0"
+			}
+		}
+	}
+}

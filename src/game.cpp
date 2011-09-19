@@ -16,12 +16,15 @@
 game::game()
 		: scoped_sdl()
 //		, scoped_ttf()
+//		, bg_(point(0,0),ANIMATION("background.data"))
 		, screen_(dimensions(800,600),dimensions(3000,1000))
 		, keyb_()
 		, player_(point(50,50),screen_)
 		, plats_()
 		, inanimates_()
-	{}
+{
+//	screen_.add(bg_);
+}
 
 static inline point toward(point const& src, point const& dst)
 {

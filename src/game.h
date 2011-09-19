@@ -25,6 +25,7 @@ public:
 private:
 	void load_level(data const&);
 
+//	screen_object bg_;
 	screen screen_;
 	keyboard keyb_;
 	player player_;
