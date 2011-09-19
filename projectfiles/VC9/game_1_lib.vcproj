@@ -154,6 +154,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\color.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\data.cpp"
 			>
 		</File>
@@ -163,6 +167,14 @@
 		</File>
 		<File
 			RelativePath="..\..\src\dimensions.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\font.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\font.h"
 			>
 		</File>
 		<File
@@ -235,6 +247,10 @@
 		</File>
 		<File
 			RelativePath="..\..\src\scoped_sdl.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\scoped_ttf.h"
 			>
 		</File>
 		<File

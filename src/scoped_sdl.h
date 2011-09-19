@@ -5,7 +5,7 @@
 #include <SDL/SDL.h>
 
 struct scoped_sdl {
-	scoped_sdl() {bool success = (SDL_Init(SDL_INIT_EVERYTHING) >= 0); assert(success);}
+	scoped_sdl() {bool success = (SDL_Init(SDL_INIT_EVERYTHING) >= 0);   assert(success);}
 	~scoped_sdl() {SDL_Quit();}
 };
 

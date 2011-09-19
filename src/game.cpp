@@ -15,6 +15,7 @@
 
 game::game()
 		: scoped_sdl()
+//		, scoped_ttf()
 		, screen_(dimensions(800,600),dimensions(3000,1000))
 		, keyb_()
 		, player_(point(50,50),screen_)

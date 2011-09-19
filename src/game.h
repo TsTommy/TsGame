@@ -9,10 +9,12 @@
 #include "platform.h"
 #include "player.h"
 #include "scoped_sdl.h"
+#include "scoped_ttf.h"
 #include "screen.h"
 
 class game
 		: private scoped_sdl
+//		, private scoped_ttf
 {
 public:
 	game();
